@@ -56,3 +56,17 @@ export const addNewPlayer = async (name, breed, imageUrl) => {
     console.error("There was an error /POST", error);
   }
 };
+
+export const removePlayer = async (playerId) => {
+  try {
+    const response = await fetch(`${APIURL}/${playerId}`, {
+      method: "GET",
+    });
+    console.log("removePlayer playerId ---> ", `${APIURL}/${playerId}`);
+    if (!response.ok) {
+      throw new Error("Network /DELETE error");
+    }
+  } catch (error) {
+    console.error("There was an error /DELETE", error);
+  }
+};

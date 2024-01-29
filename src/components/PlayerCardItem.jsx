@@ -1,10 +1,16 @@
 import React from "react";
 import "./PlayerCard.css";
 import { useNavigate } from "react-router-dom";
+import { removePlayer } from "../api";
 
-const PlayerCardItem = ({ player, isSinglePlayer }) => {
+const PlayerCardItem = ({ player, isSinglePlayer, setPlayers }) => {
   const navigate = useNavigate();
-  const handleDelete = () => {};
+  const handleDelete = async () => {
+    await removePlayer(player.id);
+    setPlayers((prevPlayer) => {
+      return prevPlayer.filter((pupPlayer) => pupPlayer.id != player.id);
+    });
+  };
   const handleSeeDetail = () => {
     if (!isSinglePlayer) {
       navigate(`/players/${player.id}`);
@@ -31,9 +37,15 @@ const PlayerCardItem = ({ player, isSinglePlayer }) => {
         >
           {!isSinglePlayer ? "See Details" : "Go Back"}
         </button>
-        <button className="delete-button" data-id={player.id}>
-          Remove from roster
-        </button>
+        {!isSinglePlayer && (
+          <button
+            onClick={handleDelete}
+            className="delete-button"
+            data-id={player.id}
+          >
+            Remove from roster
+          </button>
+        )}
       </div>
     </div>
   );
