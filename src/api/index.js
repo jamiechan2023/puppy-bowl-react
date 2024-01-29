@@ -36,3 +36,23 @@ export const fetchSinglePlayer = async (playerId) => {
     console.error(`There was an error /GET single player ${playerId}!`, error);
   }
 };
+
+export const addNewPlayer = async (name, breed, imageUrl) => {
+  try {
+    const response = await fetch(APIURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        breed,
+        imageUrl,
+      }),
+    });
+    console.log("response addNewPlayer --->", response);
+    const result = await response.json();
+    console.log("result addNewPlayer --->", result);
+    return result.data.newPlayer;
+  } catch (error) {
+    console.error("There was an error /POST", error);
+  }
+};
