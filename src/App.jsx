@@ -7,24 +7,34 @@ import { fetchAllPlayers } from "./api";
 
 const App = () => {
   const [players, setPlayers] = useState([]);
+  const [originalPlayers, setOriginalPlayers] = useState([]);
+
   useEffect(() => {
     const getAllPlayers = async () => {
       const players = await fetchAllPlayers();
       setPlayers(players);
+      setOriginalPlayers(players);
     };
     getAllPlayers();
   }, []);
 
   console.log("players from App --->", players);
+  console.log("originalPlayers from App --->", originalPlayers);
 
   return (
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/" element={<h1>Puppy Bowl</h1>} />
         <Route
           path="/players"
-          element={<AllPlayers players={players} setPlayers={setPlayers} />}
+          element={
+            <AllPlayers
+              players={players}
+              setPlayers={setPlayers}
+              originalPlayers={originalPlayers}
+            />
+          }
         />
         <Route path="/players/:id" element={<SinglePlayer />} />
       </Routes>

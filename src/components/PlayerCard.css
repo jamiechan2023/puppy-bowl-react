@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+.nav-bar {
+  display: flex;
+  margin: 3px;
+  padding: 2px;
+}
+
 #new-player-form {
   margin: 15px 20px;
 }
