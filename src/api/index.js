@@ -60,7 +60,7 @@ export const addNewPlayer = async (name, breed, imageUrl) => {
 export const removePlayer = async (playerId) => {
   try {
     const response = await fetch(`${APIURL}/${playerId}`, {
-      method: "GET",
+      method: "DELETE",
     });
     console.log("removePlayer playerId ---> ", `${APIURL}/${playerId}`);
     if (!response.ok) {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { addNewPlayer } from "../api";
 
-const NewPlayer = ({ setPlayers }) => {
+const NewPlayer = ({ setPlayers, originalPlayers }) => {
   const [name, setName] = useState("");
   const [breed, setBreed] = useState("");
   const [imageUrl, setImageUrl] = useState("");
